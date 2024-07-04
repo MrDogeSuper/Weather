@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="index.css">
+    <script defer src="weather.js"></script>
+    <link rel="icon" type="image/jpg" href="cloud.png">
+    <title>Weather</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to top, #0036e6, #07c7e0);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .ContactContainer {
+            margin-top: 20px;
+        }
+        .MainBox {
+            background-color: rgba(128, 128, 128, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 80%;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .MainBox .CityName, 
+        .MainBox .Time, 
+        .MainBox .Temp, 
+        .MainBox .Humidity, 
+        .MainBox .Desc, 
+        .MainBox .Emoji {
+            margin: 0.5rem 0;
+        }
+        .HourlyContainer, .ForecastContainer {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .HourlyContainer h2, .ForecastContainer h2 {
+            margin-bottom: 0.5rem;
+        }
+        .hourly, .forecast {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .hourly p, .forecast p {
+            flex: 1 0 48%;
+            margin: 0.5rem 0;
+        }
+        @media (max-width: 768px) {
+            .MainBox {
+                padding: 1rem;
+            }
+            .hourly p, .forecast p {
+                flex: 1 0 100%;
+            }
+        }
+        @media (max-width: 440px) {
+            .MainBox {
+                padding: 0.5rem;
+            }
+            .hourly p, .forecast p {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ContactContainer">
+        <form class="ContactLeft" id="weatherForm">
+            <div class="inputContainer">
+                <input type="search" id="Search" placeholder="📍City name" required class="contactInputs" autocomplete="country">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="MainBox">
+        <h1 class="CityName" id="cityName">City Name</h1>
+        <p class="Time" id="localTime">Local Time</p>
+        <p class="Temp" id="temperature">Temperature</p>
+        <p class="Humidity" id="humidity">Humidity</p>
+        <p class="Desc" id="description">Sunny</p>
+        <p class="Emoji" id="emoji">☀️</p>
+
+        <div class="HourlyContainer" id="hourlyForecast">
+            <h2>Hourly Forecast (Next 12 hours)</h2>
+            <div id="hourlyData" class="hourly"></div>
+        </div>
+
+        <div class="ForecastContainer" id="fiveDayForecast">
+            <h2>5-Day Forecast</h2>
+            <div id="forecastData" class="forecast"></div>
+        </div>
+    </div>
+</body>
+</html>
